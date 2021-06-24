@@ -1,0 +1,49 @@
+[
+    {
+        "key": "skyColor",
+        "type": "radio",
+        "label": "Why is the sky blue?",
+        "choices":["It is blue because it is blue.", "Many science, such wow, very fascinate.", "What really _is_ blue?"],
+        "options": {
+            "required": true
+        }
+    },
+    {
+        "key": "pathChoice",
+        "type": "radio",
+        "label": "When you come to a fork in the road, and there are no options left, which way do you go?",
+        "choices":["Left", "Counter-Left"],
+        "options": {
+            "required": true
+        }
+    },
+    {
+        "key": "eyeColor",
+        "type": "select",
+        "label": "What color are the eyes of the most interesting person you know (select all that apply)?",
+        "choices":["Brown", "Blue", "Green", "Gold", "Red", "Black", "White", "Other"],
+        "options": {
+            "multiple": true,
+            "required": true
+        }
+    },
+    {
+        "key": "surroundCount",
+        "type": "input",
+        "label": "Examine your surroundings. How many green things do you see?",
+        "options": {
+            "placeholder": "6",
+            "type": "number",
+            "required": true
+        }
+    },
+    {
+        "key": "goatName",
+        "type": "input",
+        "label": "What did/would you name your first pet goat?",
+        "options": {
+            "placeholder": "Goaty McGoatFace",
+            "required": true
+        }
+    }
+]
