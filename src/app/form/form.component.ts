@@ -18,18 +18,19 @@ export class FormComponent {
   constructor(private fb: FormBuilder) {}
 
   
-  saveResponses(data: object){
+  saveResponses(data: any){
     let key = 'formData';
-    const item = JSON.parse(localStorage.getItem(key) || '[]');
-    item.push(data);
-    
-    console.log(item);
-    localStorage.setItem('formData', JSON.stringify(data));
+    let item = JSON.parse(localStorage.getItem(key) || '[]');
+
+    let newData = item.concat(data);
+
+    localStorage.setItem('formData', JSON.stringify(newData));
   }
 
   onSubmit(): void {
-    this.saveResponses(this.questionsForm.value);
+    this.saveResponses([this.questionsForm.value]);
     alert('Responses Recorded!');
+    this.questionsForm.reset();
   }
 
   ngOnInit(){

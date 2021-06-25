@@ -43,7 +43,8 @@
         "label": "What did/would you name your first pet goat?",
         "options": {
             "placeholder": "Goaty McGoatFace",
-            "required": true
+            "required": true,
+            "type": "text"
         }
     }
 ]
