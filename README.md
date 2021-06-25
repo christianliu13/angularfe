@@ -16,11 +16,12 @@ All actions for data can be converted to call API's.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+in your terminal:
+    npm install -g @angular/cli
+    cd /path/to/angularfe
+    npm run start
+in your browser: 
+    localhost:4200 (or, if your terminal tells you otherwise)
 
 ## Further help
 
