@@ -1,75 +1,74 @@
-
-<form [formGroup]="questionsForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="questionsForm" (ngSubmit)="onSubmit()">
   <mat-card class="questions-card container-fluid">
     <mat-card-header>
       <mat-card-title>Candidate Responses</mat-card-title>
     </mat-card-header>
 
     <mat-card-content class="container-fluid justify-content-center d-flex flex-column">
-        <div class="row form-control">
-          <mat-label>Candidate Name</mat-label>
+      <div class="row form-control">
+        <mat-label>Candidate Name</mat-label>
 
-          <div class="col-sm-12 col-lg-6">            
-            <mat-form-field class="full-width" appearance="outline">
-              <input matInput placeholder="First name" formControlName="firstName" type="text">
-              <mat-error *ngIf="questionsForm.controls['firstName'].hasError('required')">
-                First name is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm-12 col-lg-6">
-            <mat-form-field class="full-width" appearance="outline">
-              <input matInput placeholder="Last name" formControlName="lastName" type="text">
-              <mat-error *ngIf="questionsForm.controls['lastName'].hasError('required')">
-                Last name is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
+        <div class="col-sm-12 col-lg-6">
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput placeholder="First name" formControlName="firstName" type="text">
+            <mat-error *ngIf="questionsForm.controls['firstName'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
 
-        <div class="row form-control" *ngFor="let control of questions">
-          <div [ngSwitch]="control.type">
-            
-            <div class="col-12" *ngSwitchCase="'radio'">
-              <mat-label>{{control.label}}</mat-label>
-              <mat-radio-group [formControlName]="control.key">
-                <mat-radio-button *ngFor="let choice of control.choices" value="{{choice}}">
-                  <span class="wrap-radio-content">
-                    {{choice}}
-                  </span>
-                </mat-radio-button>
-                <mat-error *ngIf="questionsForm.controls[control.key].hasError('required')">
-                  <strong>required</strong>
-                </mat-error>
-              </mat-radio-group>
-            </div>
-  
-            <div *ngSwitchCase="'input'">
-              <mat-label>{{control.label}}</mat-label>
-              <mat-form-field class="full-width" appearance="outline">
-                <input matInput [formControlName]="control.key" type="{{control.options.type}}">
-                <mat-hint>{{control.options.placeholder}}</mat-hint>
-                <mat-error *ngIf="questionsForm.controls[control.key].hasError('required')">
-                  <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
-  
-            <div *ngSwitchCase="'select'">
-              <mat-label>{{control.label}}</mat-label>
-              <mat-selection-list [formControlName]="control.key">
-                <mat-list-option *ngFor="let choice of control.choices" value="{{choice}}">
+        <div class="col-sm-12 col-lg-6">
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput placeholder="Last name" formControlName="lastName" type="text">
+            <mat-error *ngIf="questionsForm.controls['lastName'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row form-control" *ngFor="let control of questions">
+        <div [ngSwitch]="control.type">
+
+          <div class="col-12" *ngSwitchCase="'radio'">
+            <mat-label>{{control.label}}</mat-label>
+            <mat-radio-group [formControlName]="control.key">
+              <mat-radio-button *ngFor="let choice of control.choices" value="{{choice}}">
+                <span class="wrap-radio-content">
                   {{choice}}
-                </mat-list-option>
-                <mat-error *ngIf="questionsForm.controls[control.key].hasError('required')">
-                  <strong>required</strong>
-                </mat-error>
-              </mat-selection-list>
-            </div>
-  
+                </span>
+              </mat-radio-button>
+              <mat-error *ngIf="questionsForm.controls[control.key].hasError('required')">
+                <strong>required</strong>
+              </mat-error>
+            </mat-radio-group>
           </div>
+
+          <div *ngSwitchCase="'input'">
+            <mat-label>{{control.label}}</mat-label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput [formControlName]="control.key" type="{{control.options.type}}">
+              <mat-hint>{{control.options.placeholder}}</mat-hint>
+              <mat-error *ngIf="questionsForm.controls[control.key].hasError('required')">
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div *ngSwitchCase="'select'">
+            <mat-label>{{control.label}}</mat-label>
+            <mat-selection-list [formControlName]="control.key">
+              <mat-list-option *ngFor="let choice of control.choices" value="{{choice}}">
+                {{choice}}
+              </mat-list-option>
+              <mat-error *ngIf="questionsForm.controls[control.key].hasError('required')">
+                <strong>required</strong>
+              </mat-error>
+            </mat-selection-list>
+          </div>
+
         </div>
+      </div>
 
     </mat-card-content>
 
