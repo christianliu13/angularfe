@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { FormBuilder, Validators, ValidatorFn, RequiredValidator } from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import data from '../../assets/questions.json';
 
 @Component({
@@ -12,25 +12,35 @@ export class FormComponent {
   questionsForm = this.fb.group({
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
-  });
+  },{ updateOn: 'submit'});
   questions = data;
 
   constructor(private fb: FormBuilder) {}
 
   
   saveResponses(data: any){
-    let key = 'formData';
-    let item = JSON.parse(localStorage.getItem(key) || '[]');
+    try {
+      let key = 'formData';
+      let item = JSON.parse(localStorage.getItem(key) || '[]');
+  
+      let newData = item.concat(data);
+  
+      localStorage.setItem('formData', JSON.stringify(newData));  
+      return true;
 
-    let newData = item.concat(data);
+    } catch (error) {
+      alert('Something went wrong.  Please try again.');
+    }
 
-    localStorage.setItem('formData', JSON.stringify(newData));
+    return false;
+    
   }
 
   onSubmit(): void {
-    this.saveResponses([this.questionsForm.value]);
-    alert('Responses Recorded!');
-    this.questionsForm.reset();
+    if (!this.questionsForm.invalid && this.saveResponses([this.questionsForm.value])){
+      alert('Responses Recorded!');
+      this.questionsForm.reset();
+    }
   }
 
   ngOnInit(){
@@ -38,7 +48,6 @@ export class FormComponent {
     this.questions.forEach(control => this.questionsForm.addControl(control.key, this.fb.control('', this.getValidators(control.options)))); 
   }
 
-//todo add validators
   private getValidators(formField: any): ValidatorFn | null {
       if (formField.required) {
         return Validators.required;

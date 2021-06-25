@@ -22,6 +22,8 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { LoginComponent } from './login/login.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { MatSortModule } from '@angular/material/sort';
     NavbarComponent,
     FormComponent,
     AnalyticsComponent,
+    LoginComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

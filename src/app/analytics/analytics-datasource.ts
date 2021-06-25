@@ -25,7 +25,7 @@ function mapData(questions: any, answers: []){
     row['id'] = q.key
 
     answers.forEach((a: any) => {
-      if (a.key = q.key) {
+      if (a.key = q.key && a.firstName) {
         let name: string = a.firstName.concat(" ", a.lastName);
         
         let obj = {
