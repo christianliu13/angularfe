@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { FormBuilder, Validators, ValidatorFn } from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn, RequiredValidator } from '@angular/forms';
 import data from '../../assets/questions.json';
 
 @Component({
@@ -34,19 +34,16 @@ export class FormComponent {
   }
 
   ngOnInit(){
-    this.questions.forEach(control => this.questionsForm.addControl(control.key, this.fb.control(''))); //get questions data, could be api
+    //get questions data, could be api
+    this.questions.forEach(control => this.questionsForm.addControl(control.key, this.fb.control('', this.getValidators(control.options)))); 
   }
 
 //todo add validators
-  // private getValidators(formField: FormField): ValidatorFn {
-  //   switch(formField.validator) {
-  //     case "email":
-  //       return Validators.email;
-  //     case "required":
-  //       return Validators.required;
-  //     default:
-  //       return null;
-  //   }
-  // }
+  private getValidators(formField: any): ValidatorFn | null {
+      if (formField.required) {
+        return Validators.required;
+      }
+        return null;
+  }
 }
 
